@@ -9,6 +9,14 @@ exports['recognize English nationality'] = function (test) {
 	test.equal(result, 'nationality(paul_dirac, english)');
 }
 
+exports['recognize English nationality using present'] = function (test) {
+	var result = rule.process({ text: 'he is an english', topic: 'paul_dirac' });
+	
+	test.ok(result);
+	test.equal(typeof result, 'string');
+	test.equal(result, 'nationality(paul_dirac, english)');
+}
+
 exports['no nationality'] = function (test) {
 	var result = rule.process({ text: 'he was an', topic: 'paul_dirac' });
 	
@@ -23,3 +31,10 @@ exports['recognize German nationality'] = function (test) {
 	test.equal(result, 'nationality(albert_einstein, german)');
 }
 
+exports['recognize German nationality using present'] = function (test) {
+	var result = rule.process({ text: 'is a german', topic: 'albert_einstein' });
+	
+	test.ok(result);
+	test.equal(typeof result, 'string');
+	test.equal(result, 'nationality(albert_einstein, german)');
+}
