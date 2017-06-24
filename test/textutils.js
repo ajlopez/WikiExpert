@@ -99,3 +99,33 @@ exports['search integer using offset'] = function (test) {
 	test.deepEqual(result, { offset: 8, value: 123 });
 };
 
+exports['word not found because prefix'] = function (test) {
+	var offset = textutils.searchWord('xfoo', 'foo');
+	
+	test.equal(offset, -1);
+};
+
+exports['word not found because suffix'] = function (test) {
+	var offset = textutils.searchWord('foox', 'foo');
+	
+	test.equal(offset, -1);
+};
+
+exports['word not found using length'] = function (test) {
+	var offset = textutils.searchWord('foo bar', 'bar', { length: 5 });
+	
+	test.equal(offset, -1);
+};
+
+exports['search word'] = function (test) {
+	var offset = textutils.searchWord('foo bar', 'bar');
+	
+	test.equal(offset, 4);
+};
+
+exports['search word using offset'] = function (test) {
+	var offset = textutils.searchWord('foo bar foo', 'foo', { offset: 4 });
+	
+	test.equal(offset, 8);
+};
+
