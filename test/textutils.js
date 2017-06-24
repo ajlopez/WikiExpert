@@ -73,3 +73,29 @@ exports['search digit using offset'] = function (test) {
 	test.equal(offset, 8);
 };
 
+exports['integer not found'] = function (test) {
+	var result = textutils.searchInteger('foo');
+	
+	test.equal(result, null);
+};
+
+exports['integer not found using length'] = function (test) {
+	var result = textutils.searchInteger('foo 42', { length: 4 });
+	
+	test.equal(result, null);
+};
+
+exports['search integer'] = function (test) {
+	var result = textutils.searchInteger('foo 42');
+	
+	test.ok(result);
+	test.deepEqual(result, { offset: 4, value: 42 });
+};
+
+exports['search integer using offset'] = function (test) {
+	var result = textutils.searchInteger('123 bar 123', { offset: 4 });
+	
+	test.ok(result);
+	test.deepEqual(result, { offset: 8, value: 123 });
+};
+
