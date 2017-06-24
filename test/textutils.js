@@ -49,3 +49,27 @@ exports['search text using offset'] = function (test) {
 	test.equal(offset, 8);
 };
 
+exports['digit not found'] = function (test) {
+	var offset = textutils.searchDigit('foo');
+	
+	test.equal(offset, -1);
+};
+
+exports['digit not found using length'] = function (test) {
+	var offset = textutils.searchDigit('foo 1', { length: 4 });
+	
+	test.equal(offset, -1);
+};
+
+exports['search digit'] = function (test) {
+	var offset = textutils.searchDigit('foo 123');
+	
+	test.equal(offset, 4);
+};
+
+exports['search digit using offset'] = function (test) {
+	var offset = textutils.searchDigit('123 bar 123', { offset: 4 });
+	
+	test.equal(offset, 8);
+};
+
