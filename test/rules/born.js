@@ -9,6 +9,30 @@ exports['recognize born date'] = function (test) {
 	test.equal(result, 'born(albert_einstein, 1879, 3, 14)');
 }
 
+exports['recognize born date with additional number before date'] = function (test) {
+	var result = rule.process({ text: '7 things 14 march 1879', topic: 'albert_einstein' });
+	
+	test.ok(result);
+	test.equal(typeof result, 'string');
+	test.equal(result, 'born(albert_einstein, 1879, 3, 14)');
+}
+
+exports['recognize born date one digit day with spaces'] = function (test) {
+	var result = rule.process({ text: ' 1 march 1879', topic: 'albert_einstein' });
+	
+	test.ok(result);
+	test.equal(typeof result, 'string');
+	test.equal(result, 'born(albert_einstein, 1879, 3, 1)');
+}
+
+exports['recognize born date american format'] = function (test) {
+	var result = rule.process({ text: 'march 14, 1879', topic: 'albert_einstein' });
+	
+	test.ok(result);
+	test.equal(typeof result, 'string');
+	test.equal(result, 'born(albert_einstein, 1879, 3, 14)');
+}
+
 exports['born date should have day number'] = function (test) {
 	var result = rule.process({ text: 'march 1879', topic: 'albert_einstein' });
 	
