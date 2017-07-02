@@ -129,3 +129,14 @@ exports['search word using offset'] = function (test) {
 	test.equal(offset, 8);
 };
 
+exports['search words'] = function (test) {
+	var result = textutils.searchWords('foo bar', ['bar', 'foo', 'foobar']);
+	
+	test.ok(result);
+	test.ok(Array.isArray(result));
+	test.equal(result.length, 2);
+	test.equal(result[0], 'bar');
+	test.equal(result[1], 'foo');
+};
+
+
