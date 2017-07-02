@@ -38,3 +38,19 @@ exports['recognize German nationality using present'] = function (test) {
 	test.equal(typeof result, 'string');
 	test.equal(result, 'nationality(albert_einstein, german)');
 }
+
+exports['recognize American nationality'] = function (test) {
+	var result = rule.process({ text: 'was an american', topic: 'richard_feynman' });
+	
+	test.ok(result);
+	test.equal(typeof result, 'string');
+	test.equal(result, 'nationality(richard_feynman, american)');
+}
+
+exports['recognize American nationality using present'] = function (test) {
+	var result = rule.process({ text: 'is an american', topic: 'richard_feynman' });
+	
+	test.ok(result);
+	test.equal(typeof result, 'string');
+	test.equal(result, 'nationality(richard_feynman, american)');
+}
