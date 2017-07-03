@@ -34,3 +34,9 @@ exports['recognize philosopher profession'] = function (test) {
 	test.equal(typeof result, 'string');
 	test.equal(result, 'profession(david_hume, philosopher)');
 }
+
+exports['no profession'] = function (test) {
+	var result = rule.process({ text: 'he was a british', topic: 'david_hume' });
+	
+	test.equal(result, null);
+}
