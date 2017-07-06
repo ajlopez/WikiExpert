@@ -111,6 +111,12 @@ exports['word not found because suffix'] = function (test) {
 	test.equal(offset, -1);
 };
 
+exports['words found at beginning'] = function (test) {
+	var offset = textutils.searchWord('nobel prize in chemistry', 'nobel prize in');
+
+	test.strictEqual(offset, 0);
+};
+
 exports['word not found using length'] = function (test) {
 	var offset = textutils.searchWord('foo bar', 'bar', { length: 5 });
 	
