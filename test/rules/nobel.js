@@ -25,3 +25,12 @@ exports['recognize nobel in chemistry with year at end'] = function (test) {
 	test.equal(result, 'nobel_prize(harold_urey, chemistry, 1934)');
 };
 
+exports['recognize nobel in phisiology with year at end'] = function (test) {
+	var result = rule.process({ text: 'he was awarded was the nobel prize in physiology or medicine in 1906', topic: 'santiago_ramon_y_cajal' });
+	
+	test.ok(result);
+	test.ok(Array.isArray(result));
+	test.equal(result.length, 2);
+	test.equal(result[0], 'nobel_prize(santiago_ramon_y_cajal, medicine, 1906)');
+	test.equal(result[1], 'nobel_prize(santiago_ramon_y_cajal, physiology, 1906)');
+};
