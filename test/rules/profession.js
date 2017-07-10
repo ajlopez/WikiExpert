@@ -35,6 +35,17 @@ exports['recognize philosopher profession'] = function (test) {
 	test.equal(result, 'profession(david_hume, philosopher)');
 }
 
+exports['recognize biologist, geneticist, zoologist professions'] = function (test) {
+	var result = rule.process({ text: 'is an american molecular biologist, geneticist and zoologist', topic: 'james_watson' });
+	
+	test.ok(result);
+	test.ok(Array.isArray(result));
+	test.equal(result.length, 3);
+	test.ok(result.indexOf('profession(james_watson, biologist)') >= 0);
+	test.ok(result.indexOf('profession(james_watson, zoologist)') >= 0);
+	test.ok(result.indexOf('profession(james_watson, geneticist)') >= 0);
+}
+
 exports['no profession'] = function (test) {
 	var result = rule.process({ text: 'he was a british', topic: 'david_hume' });
 	
